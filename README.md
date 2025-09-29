@@ -1,97 +1,158 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Timely Reminder App
 
-# Getting Started
+A smart reminder app with fake call and Text-to-Speech (TTS) functionality that helps you never miss important tasks.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+### 🔔 Core Features
+- **Reminder Creation**: Add reminders with title, description, and scheduled time
+- **Fake Incoming Call**: Realistic incoming call screen when reminders trigger
+- **Text-to-Speech**: Speaks reminder text aloud when call is answered
+- **Recurring Reminders**: Daily, weekly, monthly, or custom interval reminders
+- **Snooze Functionality**: Snooze reminders for later
+- **Offline Support**: Works completely offline with local storage
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 🎯 User Experience
+- Clean, intuitive interface
+- Realistic fake call screen with caller name and image
+- Smart time formatting (e.g., "2h 30m from now")
+- Priority-based color coding for urgent reminders
+- Long-press actions for quick reminder management
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Installation
 
-```sh
-# Using npm
-npm start
+### Prerequisites
+- Node.js (>= 20)
+- React Native CLI
+- Android Studio (for Android development)
+- Xcode (for iOS development)
 
-# OR using Yarn
-yarn start
-```
+### Setup
 
-## Step 2: Build and run your app
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+2. **iOS Setup** (if developing for iOS):
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+3. **Android Setup**:
+   - Ensure Android SDK is installed
+   - Create a virtual device or connect a physical device
+
+4. **Run the app**:
+   ```bash
+   # For Android
+   npm run android
+   
+   # For iOS
+   npm run ios
+   ```
+
+## Usage
+
+### Creating a Reminder
+1. Tap the "+" button on the home screen
+2. Enter reminder title and description
+3. Select date and time
+4. Choose recurring options if needed
+5. Set caller name for the fake call
+6. Tap "Save"
+
+### Managing Reminders
+- **View**: All upcoming reminders are shown on the home screen
+- **Edit**: Tap any reminder to edit it
+- **Complete**: Tap the checkmark button
+- **Snooze**: Tap the clock button to snooze for 5 minutes
+- **Delete**: Long-press a reminder and select "Delete"
+
+### Fake Call Experience
+When a reminder triggers:
+1. A realistic incoming call screen appears
+2. Shows caller name and reminder title
+3. Options to Answer, Decline, or Snooze
+4. Answering the call speaks the reminder aloud
+5. Auto-answers after 10 seconds if not answered
+
+## Technical Details
+
+### Architecture
+- **React Native**: Cross-platform mobile development
+- **TypeScript**: Type-safe development
+- **AsyncStorage**: Local data persistence
+- **React Navigation**: Screen navigation
+- **Push Notifications**: Background reminder scheduling
+- **TTS**: Text-to-speech functionality
+
+### Key Components
+- `ReminderService`: Core business logic and data management
+- `StorageService`: Local data persistence
+- `FakeCallScreen`: Realistic incoming call UI
+- `ReminderListScreen`: Main screen with reminder list
+- `AddReminderScreen`: Reminder creation and editing
+
+### Data Models
+- `Reminder`: Core reminder data structure
+- `RepeatType`: Enum for recurring options
+- `ReminderFormData`: Form data structure
+
+## Permissions
 
 ### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
+- `VIBRATE`: For notification vibration
+- `WAKE_LOCK`: To wake device for notifications
+- `RECEIVE_BOOT_COMPLETED`: To reschedule reminders after reboot
+- `SYSTEM_ALERT_WINDOW`: For fake call overlay
+- `USE_FULL_SCREEN_INTENT`: For full-screen notifications
 
 ### iOS
+- Push notification permissions
+- TTS permissions
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## Development
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+### Project Structure
+```
+src/
+├── components/          # Reusable UI components
+├── screens/            # Screen components
+├── services/           # Business logic services
+├── types/              # TypeScript type definitions
+└── utils/              # Utility functions
 ```
 
-Then, and every time you update your native dependencies, run:
+### Adding New Features
+1. Create components in `src/components/`
+2. Add screens in `src/screens/`
+3. Extend services in `src/services/`
+4. Update types in `src/types/`
 
-```sh
-bundle exec pod install
-```
+## Troubleshooting
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Common Issues
+1. **Notifications not working**: Check device notification permissions
+2. **TTS not speaking**: Ensure device volume is up and TTS is enabled
+3. **App crashes on startup**: Check that all dependencies are installed
+4. **Fake call not appearing**: Verify notification permissions
 
-```sh
-# Using npm
-npm run ios
+### Debug Mode
+Enable debug logging by setting `__DEV__ = true` in the app configuration.
 
-# OR using Yarn
-yarn ios
-```
+## License
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+This project is licensed under the MIT License.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Contributing
 
-## Step 3: Modify your app
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-Now that you have successfully run the app, let's make changes!
+## Support
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+For issues and questions, please create an issue in the repository.
