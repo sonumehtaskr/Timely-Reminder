@@ -211,7 +211,7 @@ export const AddReminderScreen: React.FC<AddReminderScreenProps> = ({
               style={[styles.input, styles.textArea]}
               value={formData.description}
               onChangeText={(text) => setFormData(prev => ({ ...prev, description: text }))}
-              placeholder="Enter reminder description"
+              placeholder="Enter Reminder description"
               multiline
               numberOfLines={3}
               maxLength={500}
