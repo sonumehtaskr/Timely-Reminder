@@ -1,158 +1,56 @@
-# Timely Reminder App
+# Welcome to your Expo app 👋
 
-A smart reminder app with fake call and Text-to-Speech (TTS) functionality that helps you never miss important tasks.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Features
+## Get started
 
-### 🔔 Core Features
-- **Reminder Creation**: Add reminders with title, description, and scheduled time
-- **Fake Incoming Call**: Realistic incoming call screen when reminders trigger
-- **Text-to-Speech**: Speaks reminder text aloud when call is answered
-- **Recurring Reminders**: Daily, weekly, monthly, or custom interval reminders
-- **Snooze Functionality**: Snooze reminders for later
-- **Offline Support**: Works completely offline with local storage
+1. Install dependencies
 
-### 🎯 User Experience
-- Clean, intuitive interface
-- Realistic fake call screen with caller name and image
-- Smart time formatting (e.g., "2h 30m from now")
-- Priority-based color coding for urgent reminders
-- Long-press actions for quick reminder management
-
-## Installation
-
-### Prerequisites
-- Node.js (>= 20)
-- React Native CLI
-- Android Studio (for Android development)
-- Xcode (for iOS development)
-
-### Setup
-
-1. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. **iOS Setup** (if developing for iOS):
+2. Start the app
+
    ```bash
-   cd ios && pod install && cd ..
+   npx expo start
    ```
 
-3. **Android Setup**:
-   - Ensure Android SDK is installed
-   - Create a virtual device or connect a physical device
+In the output, you'll find options to open the app in a
 
-4. **Run the app**:
-   ```bash
-   # For Android
-   npm run android
-   
-   # For iOS
-   npm run ios
-   ```
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-## Usage
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-### Creating a Reminder
-1. Tap the "+" button on the home screen
-2. Enter reminder title and description
-3. Select date and time
-4. Choose recurring options if needed
-5. Set caller name for the fake call
-6. Tap "Save"
+## Get a fresh project
 
-### Managing Reminders
-- **View**: All upcoming reminders are shown on the home screen
-- **Edit**: Tap any reminder to edit it
-- **Complete**: Tap the checkmark button
-- **Snooze**: Tap the clock button to snooze for 5 minutes
-- **Delete**: Long-press a reminder and select "Delete"
+When you're ready, run:
 
-### Fake Call Experience
-When a reminder triggers:
-1. A realistic incoming call screen appears
-2. Shows caller name and reminder title
-3. Options to Answer, Decline, or Snooze
-4. Answering the call speaks the reminder aloud
-5. Auto-answers after 10 seconds if not answered
-
-## Technical Details
-
-### Architecture
-- **React Native**: Cross-platform mobile development
-- **TypeScript**: Type-safe development
-- **AsyncStorage**: Local data persistence
-- **React Navigation**: Screen navigation
-- **Push Notifications**: Background reminder scheduling
-- **TTS**: Text-to-speech functionality
-
-### Key Components
-- `ReminderService`: Core business logic and data management
-- `StorageService`: Local data persistence
-- `FakeCallScreen`: Realistic incoming call UI
-- `ReminderListScreen`: Main screen with reminder list
-- `AddReminderScreen`: Reminder creation and editing
-
-### Data Models
-- `Reminder`: Core reminder data structure
-- `RepeatType`: Enum for recurring options
-- `ReminderFormData`: Form data structure
-
-## Permissions
-
-### Android
-- `VIBRATE`: For notification vibration
-- `WAKE_LOCK`: To wake device for notifications
-- `RECEIVE_BOOT_COMPLETED`: To reschedule reminders after reboot
-- `SYSTEM_ALERT_WINDOW`: For fake call overlay
-- `USE_FULL_SCREEN_INTENT`: For full-screen notifications
-
-### iOS
-- Push notification permissions
-- TTS permissions
-
-## Development
-
-### Project Structure
-```
-src/
-├── components/          # Reusable UI components
-├── screens/            # Screen components
-├── services/           # Business logic services
-├── types/              # TypeScript type definitions
-└── utils/              # Utility functions
+```bash
+npm run reset-project
 ```
 
-### Adding New Features
-1. Create components in `src/components/`
-2. Add screens in `src/screens/`
-3. Extend services in `src/services/`
-4. Update types in `src/types/`
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Troubleshooting
+### Other setup steps
 
-### Common Issues
-1. **Notifications not working**: Check device notification permissions
-2. **TTS not speaking**: Ensure device volume is up and TTS is enabled
-3. **App crashes on startup**: Check that all dependencies are installed
-4. **Fake call not appearing**: Verify notification permissions
+- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
+- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
+- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
 
-### Debug Mode
-Enable debug logging by setting `__DEV__ = true` in the app configuration.
+## Learn more
 
-## License
+To learn more about developing your project with Expo, look at the following resources:
 
-This project is licensed under the MIT License.
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Contributing
+## Join the community
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+Join our community of developers creating universal apps.
 
-## Support
-
-For issues and questions, please create an issue in the repository.
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

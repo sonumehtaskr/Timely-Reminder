@@ -1,12 +1,12 @@
+import { Reminder, RepeatType } from '@/types/reminder.type';
 import React from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
   Alert,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { Reminder, RepeatType } from '../types/Reminder';
 
 interface ReminderCardProps {
   reminder: Reminder;
@@ -43,7 +43,7 @@ export const ReminderCard: React.FC<ReminderCardProps> = ({
 
   const getRepeatText = (reminder: Reminder) => {
     if (!reminder.isRecurring) return '';
-    
+
     switch (reminder.repeatType) {
       case RepeatType.DAILY:
         return 'Daily';
@@ -114,7 +114,7 @@ export const ReminderCard: React.FC<ReminderCardProps> = ({
                 </Text>
               </View>
             )}
-            
+
             {reminder.snoozeCount > 0 && (
               <View style={styles.snoozeBadge}>
                 <Text style={styles.snoozeText}>
@@ -126,9 +126,9 @@ export const ReminderCard: React.FC<ReminderCardProps> = ({
 
           <Text style={styles.dateText}>
             {reminder.scheduledTime.toLocaleDateString()} at{' '}
-            {reminder.scheduledTime.toLocaleTimeString([], { 
-              hour: '2-digit', 
-              minute: '2-digit' 
+            {reminder.scheduledTime.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit'
             })}
           </Text>
         </View>
@@ -141,7 +141,7 @@ export const ReminderCard: React.FC<ReminderCardProps> = ({
         >
           <Text style={styles.actionButtonText}>✓</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity
           style={[styles.actionButton, styles.snoozeButton]}
           onPress={onSnooze}

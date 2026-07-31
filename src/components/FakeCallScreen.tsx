@@ -1,16 +1,16 @@
+import type { Reminder } from '@/types/reminder.type';
+import { useAudioPlayer } from 'expo-audio';
 import React, { useEffect, useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
   Animated,
   Dimensions,
+  Image,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { Reminder } from '../types/Reminder';
-import { ReminderService } from '../services/ReminderService';
 
 interface FakeCallScreenProps {
   reminder: Reminder;
@@ -30,6 +30,8 @@ export const FakeCallScreen: React.FC<FakeCallScreenProps> = ({
   const [isRinging, setIsRinging] = useState(true);
   const [slideAnim] = useState(new Animated.Value(0));
   const [pulseAnim] = useState(new Animated.Value(1));
+
+  const player = useAudioPlayer("./assets/jovi_lifestyle.mp3");
 
   useEffect(() => {
     // Slide up animation
@@ -59,13 +61,25 @@ export const FakeCallScreen: React.FC<FakeCallScreenProps> = ({
     // Auto-answer after 10 seconds if not answered
     const autoAnswerTimer = setTimeout(() => {
       onAnswer();
-    }, 10000);
+    }, 60000);
 
     return () => {
       pulseAnimation.stop();
       clearTimeout(autoAnswerTimer);
     };
   }, []);
+
+  useEffect(() => {
+    if (isRinging) {
+      player.seekTo(0);
+      player.loop = true;
+      player.play();
+    }
+
+    return () => {
+      player.pause();
+    };
+  }, [isRinging]);
 
   const handleAnswer = () => {
     setIsRinging(false);
@@ -88,10 +102,10 @@ export const FakeCallScreen: React.FC<FakeCallScreenProps> = ({
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      
+
       {/* Background with gradient effect */}
       <View style={styles.background} />
-      
+
       <Animated.View style={[styles.content, { transform: [{ translateY: slideUp }] }]}>
         {/* Caller Info */}
         <View style={styles.callerInfo}>
@@ -104,15 +118,15 @@ export const FakeCallScreen: React.FC<FakeCallScreenProps> = ({
               </Text>
             </View>
           )}
-          
+
           <Text style={styles.callerName}>
             {reminder.callerName || 'Reminder'}
           </Text>
-          
+
           <Text style={styles.reminderTitle}>
             {reminder.title}
           </Text>
-          
+
           {isRinging && (
             <Text style={styles.ringingText}>Ringing...</Text>
           )}
